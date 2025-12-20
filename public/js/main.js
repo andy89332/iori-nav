@@ -528,6 +528,7 @@ document.addEventListener('DOMContentLoaded', function() {
       // 使用全局配置获取布局设置，避免依赖 DOM 推断
       const config = window.IORI_LAYOUT_CONFIG || {};
       const isFiveCols = config.gridCols === '5';
+      const isSixCols = config.gridCols === '6';
       const hideDesc = config.hideDesc === true;
       const hideLinks = config.hideLinks === true;
       const hideCategory = config.hideCategory === true;
@@ -560,10 +561,10 @@ document.addEventListener('DOMContentLoaded', function() {
           <div class="mt-3 flex items-center justify-between">
             <span class="text-xs text-primary-600 truncate max-w-[140px]" title="${safeUrl}">${safeUrl || '未提供链接'}</span>
             <button class="copy-btn relative flex items-center px-2 py-1 ${hasValidUrl ? 'bg-accent-100 text-accent-700 hover:bg-accent-200' : 'bg-gray-200 text-gray-400 cursor-not-allowed'} rounded-full text-xs font-medium transition-colors" data-url="${safeUrl}" ${hasValidUrl ? '' : 'disabled'}>
-              <svg xmlns="http://www.w3.org/2000/svg" class="h-3 w-3 ${isFiveCols ? '' : 'mr-1'}" fill="none" viewBox="0 0 24 24" stroke="currentColor">
+              <svg xmlns="http://www.w3.org/2000/svg" class="h-3 w-3 ${isFiveCols || isSixCols ? '' : 'mr-1'}" fill="none" viewBox="0 0 24 24" stroke="currentColor">
                 <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M8 5H6a2 2 0 00-2 2v12a2 2 0 002 2h10a2 2 0 002-2v-1M8 5a2 2 0 002 2h2a2 2 0 002-2M8 5a2 2 0 012-2h2a2 2 0 012 2m0 0h2a2 2 0 012 2v3m2 4H10m0 0l3-3m-3 3l3 3" />
               </svg>
-              ${isFiveCols ? '' : '<span class="copy-text">复制</span>'}
+              ${isFiveCols || isSixCols ? '' : '<span class="copy-text">复制</span>'}
               <span class="copy-success hidden absolute -top-8 right-0 bg-accent-500 text-white text-xs px-2 py-1 rounded shadow-md">已复制!</span>
             </button>
           </div>`;
